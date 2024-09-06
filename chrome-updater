@@ -1,0 +1,28 @@
+#!/bin/bash
+
+LAST=$1
+
+wget -O ~/Downloads/chrome.rpm "https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm";
+if [ $? -eq 0 ]; then
+  echo 'Download Complete'
+else
+  echo 'Download Failed'
+  exit
+fi
+
+sudo dnf install ~/Downloads/chrome.rpm
+if [ $? -eq 0 ]; then
+  echo 'Updated/Installed Chrome'
+else
+  echo 'Failed to Update/Install Chrome'
+  exit
+fi
+
+sudo rm -rfd ~/Downloads/chrome*
+if [ $? -eq 0 ]; then
+  echo 'Deleted Chrome download'
+else
+  echo 'Failed to delete Chrome download'
+  exit
+fi
+
